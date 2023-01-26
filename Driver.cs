@@ -37,16 +37,32 @@ namespace EnumExample
             while (!valid)
             {
                 Console.WriteLine("Enter a valid season (Spring, Summer, Fall, Winter)");
-                String resp = Console.ReadLine().ToLower();
-                resp = resp.Substring(0,1).ToUpper() + resp.Substring(1);
-                if (resp !=null && !String.IsNullOrEmpty(resp)) 
-                {                    
+                string resp = Console.ReadLine();
+                
+                if (resp != null && !String.IsNullOrEmpty(resp))
+                {
+                    resp = ProperCase(resp);
                     valid = Enum.TryParse<Season>(resp, out retval);
                 }
-                
+
             }
 
             return retval;
+        }
+
+        /// <summary>
+        /// Convert a string to proper case with the first letter capitalized and the rest lower-case.
+        /// </summary>
+        /// <param name="resp"></param>
+        /// <returns></returns>
+        private static string ProperCase(String? resp)
+        {      
+            if(string.IsNullOrEmpty(resp))
+            {
+
+            }
+            resp = resp.Substring(0, 1).ToUpper() + resp.Substring(1);
+            return resp;
         }
 
         public enum HighSchoolYear
