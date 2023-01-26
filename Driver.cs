@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using StringExtensions;
 
 namespace EnumExample
 {
     public class Driver
     {
-        const int CLASS_FRESHMAN = 1;
-        const int CLASS_SOPHOMORE = 2;
-        const int CLASS_JUNIOR = 3;
-        const int CLASS_SENIOR = 4;
-
-
         public static void Main(string[] args)
         {
 
@@ -41,28 +36,13 @@ namespace EnumExample
                 
                 if (resp != null && !String.IsNullOrEmpty(resp))
                 {
-                    resp = ProperCase(resp);
+                    resp = resp.ProperCase();
                     valid = Enum.TryParse<Season>(resp, out retval);
                 }
 
             }
 
             return retval;
-        }
-
-        /// <summary>
-        /// Convert a string to proper case with the first letter capitalized and the rest lower-case.
-        /// </summary>
-        /// <param name="resp"></param>
-        /// <returns></returns>
-        private static string ProperCase(String? resp)
-        {      
-            if(string.IsNullOrEmpty(resp))
-            {
-
-            }
-            resp = resp.Substring(0, 1).ToUpper() + resp.Substring(1);
-            return resp;
         }
 
         public enum HighSchoolYear
